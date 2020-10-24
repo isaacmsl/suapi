@@ -1,6 +1,6 @@
 {
   "name": "suapi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wrapper para acesso a API do SUAP versão 2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/isaacmsl/suap-api-wrapper/issues"
   },
-  "homepage": "https://github.com/isaacmsl/suap-api-wrapper"
+  "homepage": "https://github.com/isaacmsl/suap-api-wrapper",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
