@@ -1,0 +1,31 @@
+{
+  "name": "suap-api-wrapper",
+  "version": "0.1.0",
+  "description": "Wrapper para acesso a API do SUAP versão 2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "suap",
+    "ifrn"
+  ],
+  "author": "Isaac Lourenço <isaac.marlon@escolar.ifrn.edu.br>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isaacmsl/suap-api-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isaacmsl/suap-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/isaacmsl/suap-api-wrapper"
+}
