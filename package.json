@@ -1,6 +1,6 @@
 {
   "name": "suapi",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Wrapper para acesso a API do SUAP versão 2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "jest"
   },
   "keywords": [
     "suap",
@@ -27,5 +28,12 @@
   "bugs": {
     "url": "https://github.com/isaacmsl/suapi/issues"
   },
-  "homepage": "https://github.com/isaacmsl/suapi"
+  "homepage": "https://github.com/isaacmsl/suapi",
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "dotenv": "^8.2.0",
+    "jest": "^26.6.1",
+    "ts-jest": "^26.4.3",
+    "typescript": "^4.0.5"
+  }
 }

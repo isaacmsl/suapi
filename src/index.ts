@@ -1,1 +1,1 @@
-export * from './SuapClient'
+export * from './SuapiV2'
