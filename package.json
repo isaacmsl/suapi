@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/isaacmsl/suap-api-wrapper.git"
+    "url": "https://github.com/isaacmsl/suapi.git"
   },
   "bugs": {
-    "url": "https://github.com/isaacmsl/suap-api-wrapper/issues"
+    "url": "https://github.com/isaacmsl/suapi/issues"
   },
-  "homepage": "https://github.com/isaacmsl/suap-api-wrapper"
+  "homepage": "https://github.com/isaacmsl/suapi"
 }
