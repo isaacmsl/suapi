@@ -4,6 +4,7 @@ import IDadosAlunoV2 from './models/IDadosAlunoV2'
 import ITurmaVirtualLiteV2 from './models/ITurmaVirtualLiteV2'
 import ITurmaVirtualV2 from './models/ITurmaVirtualV2'
 import IPeriodosHorariosV2 from './models/IPeriodosHorariosV2'
+import IHorarioV2 from './models/IHorarioV2'
 
 export class SuapiV2 {
     public static BASE_URL: string = 'https://suap.ifrn.edu.br/api/v2/'
@@ -98,20 +99,15 @@ export class SuapiV2 {
         }
     }
 
-    public static async getHorarios(authToken: string, ano: Number = 2020, periodo: Number = 1) {
+    public static async getHorarios(authToken: string, ano: Number = 2020, periodo: Number = 1): Promise<Array<IHorarioV2>> {
         try {
-            const response = await axios({
-                baseURL: SuapiV2.BASE_URL,
-                url: `${SuapiV2.RESOURCES_TURMAS_VIRTUAIS_URL}/${ano}/${periodo}`,
-                params: { format: 'json' },
-                headers: {
-                    Authorization: authToken
-                }
-            })
+            const TURMAS_VIRTUAIS_URL = `${SuapiV2.RESOURCES_TURMAS_VIRTUAIS_URL}/${ano}/${periodo}`
+            const turmasVirtuais: Array<ITurmaVirtualLiteV2> = await SuapiV2.getByAuthorization(
+                TURMAS_VIRTUAIS_URL, 
+                authToken
+            )
 
-            const turmasVirtuais: Array<ITurmaVirtualLiteV2> = response.data
-
-            // const horarios: Array<IHorariosV2> = []
+            const horarios: Array<IHorarioV2> = []
 
             turmasVirtuais.forEach(turmaVirtual => {
                 const { horarios_de_aula } = turmaVirtual
@@ -123,17 +119,17 @@ export class SuapiV2 {
                     const dia = Number(indexes[0])
                     const periodo = indexes[1]
 
-                    // for (let i = 2; i < indexes.length; i++) {
-                    //     horarios.push({
-                    //         disciplina: turmaVirtual.descricao,
-                    //         dia,
-                    //         horario: SuapiV2.PERIODOS_HORARIOS_V2[periodo][i]
-                    //     })
-                    // }
+                    for (let i = 2; i < indexes.length; i++) {
+                        horarios.push({
+                            disciplina: turmaVirtual.descricao,
+                            dia,
+                            horario: SuapiV2.PERIODOS_HORARIOS_V2[periodo][i]
+                        })
+                    }
                 })
             })
 
-            return response.data
+            return horarios
         } catch (error) {
             throw error
         }
