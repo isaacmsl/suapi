@@ -1,6 +1,6 @@
 {
   "name": "suapi",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Wrapper para acesso a API do SUAP versão 2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
