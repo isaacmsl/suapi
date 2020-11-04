@@ -34,18 +34,25 @@ export class SuapiV2 {
 
     public static async getDadosPessoais(authToken: string): Promise<IDadosAlunoV2> {
         try {
-            const response = await axios({
-                baseURL: SuapiV2.BASE_URL,
-                url: SuapiV2.RESOURCES_DADOS_PESSOAIS_URL,
-                params: { format: 'json' },
-                headers: {
-                    Authorization: authToken
-                }
-            })
-
-            return response.data
+            return await SuapiV2.getByAuthorization(
+                SuapiV2.RESOURCES_DADOS_PESSOAIS_URL, 
+                authToken
+            )
         } catch (error) {
             throw error
         }
+    }
+
+    public static async getByAuthorization(url: string, authToken: string) {
+        const response = await axios({
+            baseURL: SuapiV2.BASE_URL,
+            url: url,
+            params: { format: 'json' },
+            headers: {
+                Authorization: authToken
+            }
+        })
+
+        return response.data
     }
 }
