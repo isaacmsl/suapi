@@ -19,15 +19,7 @@ Wrapper para consumir a API do SUAP em sua versão 2.
 
 ## Como contribuir
 
-- git CLI
-
-`git clone https://github.com/isaacmsl/suapi.git`
-
-- Github CLI
-
-`gh repo clone isaacmsl/suapi`
-
-- Reporte bugs abrindo uma [nova issue](https://github.com/isaacmsl/suapi/issues/new)
+- Por favor, [ leia a Wiki](https://github.com/isaacmsl/suapi/wiki/Como-contribuir) para contribuir com o projeto
 
 ## Autores
 
