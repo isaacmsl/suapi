@@ -103,7 +103,7 @@ export class SuapiV2 {
         }
     }
 
-    public static async getPeriodosLetivos(authToken: string, ano: number = 2020, periodo: number = 1): Promise<Array<IPeriodoLetivo>> {
+    public static async getPeriodosLetivos(authToken: string): Promise<Array<IPeriodoLetivo>> {
         try {
             const PERIODOS_LETIVOS_URL = `${SuapiV2.RESOURCES_PERIODOS_LETIVOS_URL}`
             return await SuapiV2.getByAuthorization(
