@@ -6,6 +6,7 @@ import ITurmaVirtualV2 from './models/ITurmaVirtualV2'
 import IPeriodosHorariosV2 from './models/IPeriodosHorariosV2'
 import IHorarioV2 from './models/IHorarioV2'
 import IPeriodoLetivo from './models/IPeriodoLetivo'
+import IBoletim from './models/IBoletim'
 
 export class SuapiV2 {
     public static BASE_URL: string = 'https://suap.ifrn.edu.br/api/v2/'
@@ -13,6 +14,7 @@ export class SuapiV2 {
     public static RESOURCES_TURMAS_VIRTUAIS_URL: string = 'minhas-informacoes/turmas-virtuais'
     public static RESOURCES_TURMA_VIRTUAL_URL: string = 'minhas-informacoes/turma-virtual'
     public static RESOURCES_PERIODOS_LETIVOS_URL: string = 'minhas-informacoes/meus-periodos-letivos'
+    public static RESOURCES_BOLETIM_URL: string = 'minhas-informacoes/boletim'
 
     public static PERIODOS_HORARIOS_V2: IPeriodosHorariosV2 = {
         M: [
@@ -148,6 +150,21 @@ export class SuapiV2 {
             throw error
         }
     }
+
+    public static async getBoletins(authToken: string, ano: Number = 2020, periodo: Number = 1): Promise<Array<IBoletim>> {
+        try {
+            const BOLETIM_URL = `${SuapiV2.RESOURCES_BOLETIM_URL}/${ano}/${periodo}`
+            const boletins: Array<IBoletim> = await SuapiV2.getByAuthorization(
+                BOLETIM_URL, 
+                authToken
+            )
+
+            return boletins
+        } catch (error) {
+            throw error
+        }
+    }
+
     public static async getByAuthorization(url: string, authToken: string) {
         const response = await axios({
             baseURL: SuapiV2.BASE_URL,
