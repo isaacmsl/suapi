@@ -5,12 +5,14 @@ import ITurmaVirtualLiteV2 from './models/ITurmaVirtualLiteV2'
 import ITurmaVirtualV2 from './models/ITurmaVirtualV2'
 import IPeriodosHorariosV2 from './models/IPeriodosHorariosV2'
 import IHorarioV2 from './models/IHorarioV2'
+import IPeriodoLetivo from './models/IPeriodoLetivo'
 
 export class SuapiV2 {
     public static BASE_URL: string = 'https://suap.ifrn.edu.br/api/v2/'
     public static RESOURCES_DADOS_PESSOAIS_URL: string = 'minhas-informacoes/meus-dados/'
     public static RESOURCES_TURMAS_VIRTUAIS_URL: string = 'minhas-informacoes/turmas-virtuais'
     public static RESOURCES_TURMA_VIRTUAL_URL: string = 'minhas-informacoes/turma-virtual'
+    public static RESOURCES_PERIODOS_LETIVOS_URL: string = 'minhas-informacoes/meus-periodos-letivos'
 
     public static PERIODOS_HORARIOS_V2: IPeriodosHorariosV2 = {
         M: [
@@ -92,6 +94,18 @@ export class SuapiV2 {
             const TURMA_VIRTUAL_URL = `${SuapiV2.RESOURCES_TURMA_VIRTUAL_URL}/${id}`
             return await SuapiV2.getByAuthorization(
                 TURMA_VIRTUAL_URL,
+                authToken
+            )
+        } catch (error) {
+            throw error
+        }
+    }
+
+    public static async getPeriodosLetivos(authToken: string, ano: number = 2020, periodo: number = 1): Promise<Array<IPeriodoLetivo>> {
+        try {
+            const PERIODOS_LETIVOS_URL = `${SuapiV2.RESOURCES_PERIODOS_LETIVOS_URL}`
+            return await SuapiV2.getByAuthorization(
+                PERIODOS_LETIVOS_URL,
                 authToken
             )
         } catch (error) {
