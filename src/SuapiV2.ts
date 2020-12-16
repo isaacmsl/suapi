@@ -3,10 +3,11 @@ import axios from 'axios'
 import IDadosAlunoV2 from './models/IDadosAlunoV2'
 import ITurmaVirtualLiteV2 from './models/ITurmaVirtualLiteV2'
 import ITurmaVirtualV2 from './models/ITurmaVirtualV2'
-import IPeriodosHorariosV2 from './models/IPeriodosHorariosV2'
 import IHorarioV2 from './models/IHorarioV2'
 import IPeriodoLetivo from './models/IPeriodoLetivo'
 import IBoletim from './models/IBoletim'
+
+import PERIODOS_HORARIOS from './PeriodosHorarios'
 
 export class SuapiV2 {
     public static BASE_URL: string = 'https://suap.ifrn.edu.br/api/v2/'
@@ -15,32 +16,6 @@ export class SuapiV2 {
     public static RESOURCES_TURMA_VIRTUAL_URL: string = 'minhas-informacoes/turma-virtual'
     public static RESOURCES_PERIODOS_LETIVOS_URL: string = 'minhas-informacoes/meus-periodos-letivos'
     public static RESOURCES_BOLETIM_URL: string = 'minhas-informacoes/boletim'
-
-    public static PERIODOS_HORARIOS_V2: IPeriodosHorariosV2 = {
-        M: [
-            '07:00 - 07:45',
-            '07:45 - 08:30',
-            '08:50 - 09:35',
-            '09:35 - 10:20',
-            '10:30 - 11:15',
-            '11:15 - 12:00'
-        ],
-        V: [
-            '13:00 - 13:45',
-            '13:45 - 14:30',
-            '14:40 - 15:25',
-            '15:25 - 16:10',
-            '16:30 - 17:15',
-            '17:15 - 18:00'
-        ],
-        N: [
-            '19:00 - 19:45',
-            '19:45 - 20:30',
-            '20:40 - 21:25',
-            '21:25 - 22:10'
-        ]
-    }
-
 
     /**
      * 
@@ -135,11 +110,13 @@ export class SuapiV2 {
                     const dia = Number(indexes[0])
                     const periodo = indexes[1]
 
+                    let posHorario = 0
                     for (let i = 2; i < indexes.length; i++) {
+                        posHorario = Number(indexes[i]) - 1
                         horarios.push({
                             disciplina: turmaVirtual.descricao,
                             dia,
-                            horario: SuapiV2.PERIODOS_HORARIOS_V2[periodo][i]
+                            horario: PERIODOS_HORARIOS[periodo][posHorario]
                         })
                     }
                 })
